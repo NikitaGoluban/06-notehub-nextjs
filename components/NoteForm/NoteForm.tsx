@@ -4,8 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { createNote } from '@/lib/api';
-import type { CreateNoteParams } from '@/lib/api';
-import type { NoteTag } from '@/types/note';
+import type { CreateNoteParams, NoteTag } from '@/types/note';
 import css from './NoteForm.module.css';
 
 interface NoteFormProps {
@@ -18,9 +17,9 @@ const initialValues: CreateNoteParams = { title: '', content: '', tag: 'Todo' };
 const validationSchema = Yup.object({
   title: Yup.string()
     .trim()
+    .required('Title is required')
     .min(3, 'Title must be at least 3 characters')
-    .max(50, 'Title must be at most 50 characters')
-    .required('Title is required'),
+    .max(50, 'Title must be at most 50 characters'),
   content: Yup.string().max(500, 'Content must be at most 500 characters'),
   tag: Yup.string()
     .oneOf(tags, 'Select a valid tag')

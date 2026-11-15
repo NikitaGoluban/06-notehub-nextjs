@@ -36,7 +36,9 @@ npm run format:check
 npm run test:e2e
 ```
 
-End-to-end tests use the configured API token and the production build on port 3000. The CRUD test creates a uniquely named temporary note and removes it afterward. Chrome must be installed.
+The default end-to-end suite uses an isolated local API on port 4010 and the production build on port 3000. It covers SSR, hydration, search, pagination, mutation failures, validation, responsive layouts, and recovery from server errors. It does not modify real notes. Chrome must be installed.
+
+To verify the real backend, run `npm run test:e2e:live`. Set `PLAYWRIGHT_BASE_URL` to the production URL to test Vercel instead of a local server. The live CRUD test creates and removes a temporary note. Run live suites sequentially to avoid the backend's request limit.
 
 ## Vercel
 

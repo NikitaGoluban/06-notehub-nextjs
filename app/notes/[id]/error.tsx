@@ -2,15 +2,15 @@
 
 export default function NoteDetailsError({
   error,
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
   return (
     <main>
       <p role="alert">Could not fetch note details. {error.message}</p>
-      <button type="button" onClick={reset}>
+      <button type="button" onClick={retry}>
         Try again
       </button>
     </main>

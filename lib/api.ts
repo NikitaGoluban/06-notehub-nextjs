@@ -1,23 +1,10 @@
 import axios from 'axios';
-import type { Note, NoteTag } from '@/types/note';
-
-export interface FetchNotesParams {
-  page: number;
-  search?: string;
-  perPage?: number;
-  signal?: AbortSignal;
-}
-
-export interface FetchNotesResponse {
-  notes: Note[];
-  totalPages: number;
-}
-
-export interface CreateNoteParams {
-  title: string;
-  content: string;
-  tag: NoteTag;
-}
+import type {
+  Note,
+  FetchNotesParams,
+  FetchNotesResponse,
+  CreateNoteParams,
+} from '@/types/note';
 
 const noteApi = axios.create({
   baseURL: 'https://notehub-public.goit.study/api',
