@@ -35,11 +35,13 @@ export default function NoteForm({ onSuccess, onCancel }: NoteFormProps) {
 
   const handleSubmit = async (values: CreateNoteParams) => {
     try {
-      await createMutation.mutateAsync({
-        ...values,
-        title: values.title.trim(),
-      });
-      onSuccess();
+      await createMutation.mutateAsync(
+        {
+          ...values,
+          title: values.title.trim(),
+        },
+        { onSuccess },
+      );
     } catch {
       // The mutation error is displayed in the form so the user can retry.
     }

@@ -17,6 +17,9 @@ test('list is rendered on the server and hydrates without a duplicate browser re
   await expect(
     page.getByRole('heading', { name: 'Note 1', exact: true }),
   ).toBeVisible();
+  await page.getByRole('button', { name: 'Create note +' }).click();
+  await expect(page.getByLabel('Title', { exact: true })).toBeFocused();
+  await page.keyboard.press('Escape');
   expect(browserRequests).toEqual([]);
 });
 

@@ -2,6 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { deleteNote } from '@/lib/api';
 import type { Note } from '@/types/note';
 import css from './NoteList.module.css';
@@ -11,12 +12,14 @@ interface NoteListProps {
 }
 
 export default function NoteList({ notes }: NoteListProps) {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const deleteMutation = useMutation({
     mutationFn: deleteNote,
-    onSuccess: (note) => {
+    onSuccess: async (note) => {
       queryClient.removeQueries({ queryKey: ['note', note.id] });
-      return queryClient.invalidateQueries({ queryKey: ['notes'] });
+      await queryClient.invalidateQueries({ queryKey: ['notes'] });
+      router.refresh();
     },
   });
 

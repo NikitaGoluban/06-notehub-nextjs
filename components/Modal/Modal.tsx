@@ -33,6 +33,11 @@ export default function Modal({ children, onClose }: ModalProps) {
       if (!first) {
         event.preventDefault();
         modalRef.current?.focus();
+      } else if (
+        !focusableElements.includes(document.activeElement as HTMLElement)
+      ) {
+        event.preventDefault();
+        (event.shiftKey ? last : first)?.focus();
       } else if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last?.focus();
