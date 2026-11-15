@@ -24,7 +24,7 @@ Open http://localhost:3000.
 - Shared header, footer, query provider, route loading UI, and separate error boundaries for the notes list and details.
 - Formik and Yup validation; accessible modal with focus trapping, Escape/backdrop dismissal, and scroll locking.
 
-API functions are in `lib/api.ts`; shared note types are in `types/note.ts`. Each reusable component is in its own folder under `components`.
+API functions are in `lib/api.ts`. Domain types (`Note`, `NoteTag`, and `CreateNoteParams`) are in `types/note.ts`; API query parameters and pagination responses are in `lib/api.types.ts`. Each reusable component is in its own folder under `components`.
 
 ## Checks
 
